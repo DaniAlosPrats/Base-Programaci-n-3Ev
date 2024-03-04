@@ -1,21 +1,9 @@
 <?php
 require_once "autoloader2.php";
-$cartera = new Cartera('data.csv');
+$cartera = new Cartera();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $active = isset($_POST["active"]) ? "True" : "False";
-
-    $datos = [
-        'id' => $_POST["id"],
-        'company' => $_POST["company"],
-        'investiment' => $_POST["investiment"],
-        'date' => $_POST["date"],
-        'active' => $active
-    ];
-
-    $cartera->insert($datos);
-
-    $cartera->persist();
+    $cartera->insert($_POST);
 
     header("location: index.php");
 }
@@ -36,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="text" id="id" name="id" value="">
             <label for="company">Company:</label>
             <input type="text" id="company" name="company" value="">
-            <label for="investiment">Investment:</label>
-            <input type="number" id="investiment" name="investiment" value="">
+            <label for="investment">Investment:</label>
+            <input type="number" id="investment" name="investment" value="">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" value="">
             <label for="active">Active:</label>
-            <input type="text" id="active" name="active" value="">
+            <input type="NUMBER" id="active" name="active" value="">
             <button type="submit">Update</button>
         </form>
     </header>
