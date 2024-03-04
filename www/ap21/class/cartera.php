@@ -37,20 +37,7 @@ class Cartera
 
     public function insert($datos)
         {
-            $conn = new mysqli('db', 'root', 'test', "ap21");
-                
             
-                $id = $_POST["id"];
-                $company = $_POST["company"];
-                $investiment = $_POST["investment"];
-                $date = $_POST["date"];
-                $active = $_POST ["active"];
-           
-        $query= "INSERT INTO Investment (id, company, investment, date, active)
-        VALUES ('$id','$company','$investiment','$date','$active')";
-        mysqli_query($conn, $query);
-        mysqli_close($conn);
-
 }
         
 public function drawList()
