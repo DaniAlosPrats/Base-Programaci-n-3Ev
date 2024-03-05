@@ -1,22 +1,37 @@
 <?php
 require_once "autoloader2.php";
+$connection = new Connection();
+$conn = $connection->getConn();
 
-$cartera = new Cartera("data.csv");
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-$client = $cartera->getClientes($id);
+$id = isset($_GET['Id']) ? $_GET['Id'] : null;
 
-if (count($_POST) > 0) {
-    $active = isset($_POST["active"]) ? 'True' : 'False'; 
-    $datos=[
-        'id'=>$_POST["id"],
-        'company'=>$_POST["company"],
-        'investiment'=>$_POST["investiment"],
-        'date'=>$_POST["date"],
-        'active'=> $active   
-    ];
-    $cartera->update($_POST);
+$query = "SELECT 'Company' FROM Investment WHERE 'id'=$id";
+$result = $conn->query( $query );  
+$companyForm->fetch_array(MYSQLI_NUM);
+$result->close();
+
+
+$query = "SELECT 'Investment' FROM Investment WHERE 'id'=$id";
+$result = $conn->query( $query );  
+$InvestmentForm->fetch_array(MYSQLI_NUM);
+$result->close();
+
+$query = "SELECT 'Date' FROM Investment WHERE 'id'=$id";
+$result = $conn->query( $query );  
+$dateForm->fetch_array(MYSQLI_NUM);
+$result->close();
+
+$query = "SELECT 'Active' FROM Investment WHERE 'id'=$id";
+$result = $conn->query( $query );  
+$ActiveForm->fetch_array(MYSQLI_NUM);
+$result->close();
+
+
+
     header("location: index.php");
-}
+
+
+ 
 
 ?>
 <!DOCTYPE html>
@@ -72,20 +87,19 @@ button:hover {
 </head>
 <body>
     <header>
-<form id="form_x" class="class_x" method="post" action="edit.php?id=<?=$id?>">
-<label for="id">Id:</label>
-    <input type="text" id="id" name="id" value="<?php echo $client->getId() ?>">
-    <label for="company">company:</label>
-    <input type="text" id="company" name="company" value="<?php echo $client->getCompany() ?>">
-    <label for="investiment">investiment:</label>
-    <input type="number" id="investiment" name="investiment" value="<?php echo $client->getInvestiment() ?>">
-    <label for="date">date:</label>
-    <input type="date" id="date" name="date" value="<?php echo $client->getDate() ?>">
-    <label for="active">Active:</label>
-    <input type="text" id="active" name="active" value="<?=  $client->getActive()  ?>">
-    <button type="submit">Update</button>
-</header>
-</from>
+        <form id="form_x" class="class_x" method="post" action="edit.php?id=<?= $id ?>">
+            <label for="id">Id:</label>
+            <input type="text" id="id" name="id" value="<?php  ?>">
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" value="<?php  ?>">
+            <label for="investment">Investment:</label>
+            <input type="number" id="investment" name="investment" value="<?php  ?>">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="<?php  ?>">
+            <label for="active">Active:</label>
+            <input type="text" id="active" name="active" value="<?= ?>">
+            <button type="submit">Update</button>
+        </form>
+    </header>
 </body>
 </html>
-

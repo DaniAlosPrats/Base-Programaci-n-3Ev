@@ -22,7 +22,7 @@ $conn = $connection->getConn();
     <table class="redTable">
         <thead>
             <tr>
-                <td colspan="7">
+                <td colspan="8">
                   
                 </td>
             </tr>
@@ -55,8 +55,8 @@ $conn = $connection->getConn();
      
           echo '<td><a href="insertar.php?id="><img src="mas.png" width="25" height="25"></a></td>';
        
-          echo'<td><a href="delete.php?id=' . $value['Id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
-          echo'<td><a href="edit.php?id="><img src="edit_icon.png" width="25" height="25"></a></td>';
+          echo'<td><a href="delete.php?Id=' . $value['Id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
+          echo'<td><a href="edit.php?id=' . $value['Id'] .'"><img src="edit_icon.png" width="25" height="25"></a></td>';
           echo '</tr>';
       }
       echo '</table>';
