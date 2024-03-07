@@ -4,6 +4,7 @@ require_once "autoloader2.php";
 
 $connection = new Connection();
 $conn = $connection->getConn();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +39,7 @@ $conn = $connection->getConn();
       $query = 'SELECT * From Investment';
       $result = mysqli_query($conn, $query);
   
+  
       echo '<table class="table table-striped">';
       echo '<tr>
               <th>Id</th>
@@ -47,7 +49,26 @@ $conn = $connection->getConn();
               <th>Active</th>
               <th colspan="2">Actions</th>
           </tr>';
-      while($value = $result->fetch_array(MYSQLI_ASSOC)){
+          for($i=0;$i<= 10;$i++){
+            $result->data_seek($i);
+            $value=$result->fetch_array(MYSQLI_ASSOC);
+        
+            echo '<tr>';
+            foreach($value as $element){
+                echo '<td>' . $element . '</td>';
+            }
+            echo '<td><a href="insertar.php?id="><img src="mas.png" width="25" height="25"></a></td>';
+       
+          echo'<td><a href="delete.php?Id=' . $value['Id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
+          echo'<td><a href="edit.php?id=' . $value['Id'] .'"><img src="edit_icon.png" width="25" height="25"></a></td>';
+
+
+            echo '</tr>';
+
+
+
+        }
+     /* while($value = $result->fetch_array(MYSQLI_ASSOC)){
           echo '<tr>';
           foreach($value as $element){
               echo '<td>' . $element . '</td>';
@@ -58,9 +79,10 @@ $conn = $connection->getConn();
           echo'<td><a href="delete.php?Id=' . $value['Id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
           echo'<td><a href="edit.php?id=' . $value['Id'] .'"><img src="edit_icon.png" width="25" height="25"></a></td>';
           echo '</tr>';
-      }
+      }*/
       echo '</table>';
-  
+      $registro_total=mysqli_num_rows($result);
+      echo '<td><a'
       $result->close();
       mysqli_close($conn);
   

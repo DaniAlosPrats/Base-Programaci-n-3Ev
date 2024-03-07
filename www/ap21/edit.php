@@ -1,105 +1,87 @@
 <?php
+
 require_once "autoloader2.php";
-$connection = new Connection();
+
+$connection = new Connection;
 $conn = $connection->getConn();
 
-$id = isset($_GET['Id']) ? $_GET['Id'] : null;
+$id=$_GET['id'];
 
-$query = "SELECT 'Company' FROM Investment WHERE 'id'=$id";
-$result = $conn->query( $query );  
-$companyForm->fetch_array(MYSQLI_NUM);
-$result->close();
+$query = "SELECT * FROM Investment WHERE id='$id'";
+$result = mysqli_query($conn, $query);
+$client = mysqli_fetch_assoc($result);
 
+if (count($_POST) > 0) {
 
-$query = "SELECT 'Investment' FROM Investment WHERE 'id'=$id";
-$result = $conn->query( $query );  
-$InvestmentForm->fetch_array(MYSQLI_NUM);
-$result->close();
+    $id=$_POST["id"];
+	$company=$_POST["company"];
+	$investment=$_POST["investment"];
+	$date=$_POST["date"];
+	$active=$_POST["active"];
+    
+    $query = "UPDATE Investment SET Company='$company', Investment='$investment', Date='$date', Active='$active' WHERE Id='$id'";
 
-$query = "SELECT 'Date' FROM Investment WHERE 'id'=$id";
-$result = $conn->query( $query );  
-$dateForm->fetch_array(MYSQLI_NUM);
-$result->close();
+    if (mysqli_query($conn, $query)) {
+        header("location: index.php");
+    }
+}
 
-$query = "SELECT 'Active' FROM Investment WHERE 'id'=$id";
-$result = $conn->query( $query );  
-$ActiveForm->fetch_array(MYSQLI_NUM);
-$result->close();
-
-
-
-    header("location: index.php");
-
-
- 
+    
+    
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
-header {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
-}
-
-form {
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-</style>
-</head>
+<html>
+    <head>
+        <title>Información</title>
+        <style>
+            form {
+                border: 2px solid black;
+                width: 400px;
+                height: 500px;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+<center><h1>Informacion de la empresa</h1></center>
 <body>
-    <header>
-        <form id="form_x" class="class_x" method="post" action="edit.php?id=<?= $id ?>">
-            <label for="id">Id:</label>
-            <input type="text" id="id" name="id" value="<?php  ?>">
-            <label for="company">Company:</label>
-            <input type="text" id="company" name="company" value="<?php  ?>">
-            <label for="investment">Investment:</label>
-            <input type="number" id="investment" name="investment" value="<?php  ?>">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" value="<?php  ?>">
-            <label for="active">Active:</label>
-            <input type="text" id="active" name="active" value="<?= ?>">
-            <button type="submit">Update</button>
-        </form>
-    </header>
+<center>
+<form id="form_x" class="class_x" method="post">
+<br>
+<label for="id" >ID: </label>
+<input type="id" name="id" value="<?php echo $client['Id']; ?>" readonly>
+<br>
+<br>
+<br>
+<label for="company" >Company: </label>
+<input type="company" name="company" value="<?php echo $client['Company']; ?>">
+<br>
+<br>
+<br>
+<label for="investment">Investment: </label>
+<input type="text" name="investment" value="<?php echo $client['Investment']; ?>">
+<br>
+<br>
+<br>
+<label for="date">Date: </label>
+<input type="date" name="date" value="<?php echo $client['Date']; ?>">
+<br>
+<br>
+<br> 
+<label for="active"> Active: </label>
+<select id="active" name="active" value="<?php echo $client['Active']; ?>">
+    <option value="0">Yes</option>
+    <option value="1">No</option>
+</select>
+<br>
+<br>
+<br>
+<input id="submit" type="submit" value="Aceptar" />
+</form>
+</center>
 </body>
+
 </html>
+
+
+<?php
