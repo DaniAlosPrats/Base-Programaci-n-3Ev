@@ -15,4 +15,3 @@ for ($i = 1; $i <= 100; $i++) {
 
 mysqli_close($conn);
 
-header("location: index.php");

@@ -81,8 +81,18 @@ $conn = $connection->getConn();
           echo '</tr>';
       }*/
       echo '</table>';
-      $registro_total=mysqli_num_rows($result);
-      echo '<td><a'
+      $registro_total=mysqli_num_rows($result);// lineas que hay
+      $registro_pagina=10;//cantidad de registro por pagina
+      $pagina= ceil($registro_total/$registro_pagina);//calcular la cantidad por pagina
+      $pagActiva=(isset($_GET["pagina"]))? $_GET["pagina"]:1;//Pagina actual
+      $primerregistro = ($pagActiva - 1 ) * $registro_pagina; //primer registro
+      $ultimoRegistro =  $pagActiva*($registro_pagina-1);//ultimo registro 
+     
+      for ($i = 1; $i <= $pagina; $i++) {
+        echo '<a href="index.php?pagina=' . $i . '">' . $i . '</a>';
+      }
+     
+
       $result->close();
       mysqli_close($conn);
   
