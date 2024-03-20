@@ -1,6 +1,6 @@
 <?php
 function miAutoload($claseDesconocida){
-    $fichero = "class/{$claseDesconocida}.php";
+    $fichero = "clases/{$claseDesconocida}.php";
     if(file_exists($fichero)){
     require_once $fichero;
     }

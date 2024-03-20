@@ -36,7 +36,7 @@ class Empresa {
         return $this->active;
     }
     public function setId($id){
-        $this->Id=$Id;
+        $this->id=$id;
     }
     public function setCompany($company){
         $this->company=$company;
