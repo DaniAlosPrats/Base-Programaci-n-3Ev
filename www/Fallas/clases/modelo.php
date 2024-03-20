@@ -1,6 +1,6 @@
 <?php
 
-class modelo extends Connection {
+class modelo extends Conexion {
 
 
     public function getAllProductos() {
@@ -17,22 +17,21 @@ class modelo extends Connection {
     }
 
     public function showAllProductos(){
-        $producto = $this->getAllProductos();
+        $productos = $this->getAllProductos();
         echo "<table>
-        <tr>
-            <th>PROD_NUM</th>
-            <th>DESCRIPCION</th>
-           
-        </tr>";
-foreach ($producto as $productos) {
-    echo "<tr>
-            <td>" . $productos['PROD_NUM'] . "</td>
-            <td>" . $productos['DESCRIPCION'] . "</td>
-       
-          </tr>";
-}
-echo "</table>";
-}
+                <tr>
+                    <th>PROD_NUM</th>
+                    <th>DESCRIPCION</th>
+                </tr>";
+        foreach ($productos as $producto) {
+            echo "<tr>
+                    <td>" . $producto->PROD_NUM . "</td>
+                    <td>" . $producto->DESCRIPCION . "</td>
+                  </tr>";
+        }
+        echo "</table>";
+    }
+    
 public function getAllEmp() {
     $query  = "SELECT EMP_NO, APELLIDOS, DEPT_NO , SALARIO FROM EMP";
     $resultado = $this->conn->query($query);
@@ -55,9 +54,9 @@ public function showAllEmp() {
             </tr>";
     foreach ($empleados as $empleado) {
         echo "<tr>
-                <td>" . $empleado['EMP_NO'] . "</td>
-                <td>" . $empleado['APELLIDOS'] . "</td>
-                <td>" . $empleado['SALARIO'] . "</td>
+                <td>" . $empleado->EMP_NO . "</td>
+                <td>" . $empleado->APELLIDOS . "</td>
+                <td>" . $empleado->SALARIO . "</td>
               </tr>";
     }
     echo "</table>";
@@ -84,9 +83,9 @@ public function showAllCliente($order) {
             </tr>";
     foreach ($clientes as $cliente) {
         echo "<tr>
-                <td>" . $cliente['CLIENTE_COD'] . "</td>
-                <td>" . $cliente['NOMBRE'] . "</td>
-                <td>" . $cliente['CIUDAD'] . "</td>
+                <td>" . $cliente->CLIENTE_COD . "</td>
+                <td>" . $cliente->NOMBRE. "</td>
+                <td>" . $cliente->CIUDAD . "</td>
               </tr>";
     }
     echo "</table>";
@@ -106,7 +105,7 @@ public function getPedidoOver($total) {
 
 public function showPedidoOver($total) {
     $pedidos = $this->getPedidoOver($total);
-    echo "<table border='1'>
+    echo "<table>
             <tr>
                 <th>PEDIDO_NUM</th>
                 <th>CLIENTE_COD</th>
@@ -121,8 +120,9 @@ public function showPedidoOver($total) {
     }
     echo "</table>";
 }
+
 public function getLineasPedido($pedido) {
-    $consulta = "SELECT PEDIDO_NUM, DETALLE_NUM, IMPORTE FROM detalle WHERE PEDIDO_NUM = $pedido";
+    $consulta = "SELECT PEDIDO_NUM, DETALLE_NUM, IMPORTE FROM DETALLE WHERE PEDIDO_NUM = $pedido";
     $resultado = $this->conn->query($consulta);
     if (!$resultado) {
         die("Error en la consulta: " . $this->conn->error);
@@ -135,7 +135,7 @@ public function getLineasPedido($pedido) {
 }
 
 public function getLineasPedidoMayor($pedido) {
-    $consulta = "SELECT MAX(IMPORTE) FROM detalle WHERE PEDIDO_NUM = $pedido";
+    $consulta = "SELECT MAX(IMPORTE) AS max_importe FROM DETALLE WHERE PEDIDO_NUM = $pedido";
     $resultado = $this->conn->query($consulta);
     if (!$resultado) {
         die("Error en la consulta: " . $this->conn->error);
@@ -147,7 +147,7 @@ public function getLineasPedidoMayor($pedido) {
 public function showLineasPedido($pedido) {
     $lineasPedido = $this->getLineasPedido($pedido);
     $max_importe = $this->getLineasPedidoMayor($pedido);
-    echo "<table >
+    echo "<table>
             <tr>
                 <th>PEDIDO_NUM</th>
                 <th>DETALLE_NUM</th>
@@ -157,7 +157,13 @@ public function showLineasPedido($pedido) {
         echo "<tr>
                 <td>" . $linea['PEDIDO_NUM'] . "</td>
                 <td>" . $linea['DETALLE_NUM'] . "</td>
-                <td>" . ($linea['IMPORTE'] == $max_importe ? $linea['IMPORTE'] . " <img src='estrella.png' alt='*' width='20px' height='20px'>" : $linea['IMPORTE']) . "</td>
+                <td>";
+        if ($linea['IMPORTE'] == $max_importe) {
+            echo $linea['IMPORTE'] . " <img src='star-256.png'  width='20px' height='20px'>";
+        } else {
+            echo $linea['IMPORTE'];
+        }
+        echo "</td>
               </tr>";
     }
     echo "</table>";
