@@ -67,16 +67,33 @@ class modelo extends conexion{
                     <td>" . $tarea->fecha_vencimiento . "</td>
                   </tr>";
         }
+        echo "<tr>
+        <td colspan='4'><a href='nueva.php'>Añadir tarea</a></td>
+      </tr>";
         echo "</table>";
     }
-    function addtarea(){
-        $query = "INSERT * FROM tareas";
-        $resultado = $this->conn->query( $query );
-        if(!$resultado){
+    function addtarea($nombre, $descripcion, $fecha_creacion, $fecha_vencimiento){
+        $query = "INSERT INTO tareas (titulo, descripcion, fecha_creacion, fecha_vencimiento) 
+                  VALUES ('$nombre', '$descripcion', '$fecha_creacion', '$fecha_vencimiento')";
+        $resultado = $this->conn->query($query);
+        if (!$resultado) {
             die("Error en la consulta: " . $this->conn->error);
         }
     }
+    public function updateTarea($id, $titulo, $descripcion, $fecha_vencimiento) {
+        $query = "UPDATE tareas SET titulo='$titulo', descripcion='$descripcion', fecha_vencimiento='$fecha_vencimiento' WHERE id=$id";
+        $resultado = $this->conn->query($query);
+        if (!$resultado) {
+            die("Error en la consulta: " . $this->conn->error);
+        } else {
+           
+            header("Location: modifica.php?id=$id");
+            exit();
+        }
+    }
 }
+    
+
 
     
 
