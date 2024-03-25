@@ -69,6 +69,7 @@ class modelo extends conexion{
         }
         echo "<tr>
         <td colspan='4'><a href='nueva.php'>Añadir tarea</a></td>
+        <td colspan='4'><a href='modifica.php'>modificar tarea</a></td>
       </tr>";
         echo "</table>";
     }
@@ -91,8 +92,17 @@ class modelo extends conexion{
             exit();
         }
     }
+    public function encotrarID($id) {
+        $query = "SELECT * FROM tareas WHERE id = $id";
+        $resultado = $this->conn->query($query);
+        if ($resultado && $resultado->num_rows > 0) {
+            $row = $resultado->fetch_object();
+            return $row;
+        } else {
+            return null; 
+    }
 }
-    
+}
 
 
     

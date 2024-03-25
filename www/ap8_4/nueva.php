@@ -47,12 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <textarea name="descripcion" class="element textarea medium"></textarea> 
         </div> 
         </li>
-		<li>
-        <label class="description" for="descripcion">Descripción de la tarea </label>
-        <div>
-            <textarea name="descripcion" class="element textarea medium"></textarea> 
-        </div> 
-        </li> 
 		      <li>
         <label class="description" for="fecha_vencimiento">Fecha de vencimiento </label>
         <span>
