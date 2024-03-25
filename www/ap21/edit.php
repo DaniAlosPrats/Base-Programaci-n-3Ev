@@ -7,7 +7,7 @@ $conn = $connection->getConn();
 
 $id=$_GET['id'];
 
-$query = "SELECT * FROM Investment WHERE id='$id'";
+$query = "SELECT * FROM tareas WHERE id='$id'";
 $result = mysqli_query($conn, $query);
 $client = mysqli_fetch_assoc($result);
 

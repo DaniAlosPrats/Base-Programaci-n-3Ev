@@ -38,13 +38,16 @@ $modelo->init();
                     <td>$task->titulo</td>
                     <td>$task->fecha_vencimiento</td>
                     <td>$task->fecha_creacion</td>
+                    <td><a href='borrar.php'>borrar tarea</a></td>
+                    <td><a href='modifica.php'>Modificar tarea</a></td>
                   </tr>";
         }
+        
         ?>
         <tr>
-            <td colspan="4"><a href='nueva.php'>Añadir tarea</a></td>
-            <td colspan="4"><a href='modifica.php'>Modificar tarea</a></td>
-            <td colspan="4"><a href='borrar.php'>borrar tarea</a></td>
+            <td colspan="6"><a href='nueva.php'>Añadir tarea</a></td>
+            
+           
         </tr>
     </tbody>
 </table>

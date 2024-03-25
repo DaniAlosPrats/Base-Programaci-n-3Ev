@@ -3,8 +3,9 @@ require_once "autoloader.php";
 $modelo = new modelo();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-   
-    $nombre = $_POST["titulo"]; 
+
+	  
+    $nombre = $_POST["titulo"];  
     $descripcion = $_POST["descripcion"]; 
     $fecha_creacion = date("Y-m-d");
     $fecha_vencimiento = $_POST["fecha_vencimiento"]; 
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p>Introduce los datos de la tarea</p>
         </div>                      
             <ul >
+		
             
                     <li>
         <label class="description" for="titulo">Título </label>
