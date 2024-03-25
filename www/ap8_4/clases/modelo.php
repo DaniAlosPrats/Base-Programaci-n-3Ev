@@ -52,13 +52,7 @@ class modelo extends conexion{
     }
     public function showAllTasks(){
         $tareas = $this->getAllTasks();
-        echo "<table>
-                <tr>
-                    <th>id</th>
-                    <th>titulo</th>
-                    <th>fecha_creacion</th>
-                    <th>fecha_vencimiento</th>
-                </tr>";
+        echo "<table>";
         foreach ($tareas as $tarea) {
             echo "<tr>
                     <td>" . $tarea->id . "</td>
@@ -68,11 +62,13 @@ class modelo extends conexion{
                   </tr>";
         }
         echo "<tr>
-        <td colspan='4'><a href='nueva.php'>Añadir tarea</a></td>
-        <td colspan='4'><a href='modifica.php'>modificar tarea</a></td>
-      </tr>";
+                <td colspan='4'><a href='nueva.php'>Añadir tarea</a></td>
+                <td colspan='4'><a href='modifica.php'>Modificar tarea</a></td>
+              </tr>";
         echo "</table>";
     }
+    
+    
     function addtarea($nombre, $descripcion, $fecha_creacion, $fecha_vencimiento){
         $query = "INSERT INTO tareas (titulo, descripcion, fecha_creacion, fecha_vencimiento) 
                   VALUES ('$nombre', '$descripcion', '$fecha_creacion', '$fecha_vencimiento')";
