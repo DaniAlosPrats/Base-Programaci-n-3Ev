@@ -50,28 +50,33 @@ class modelo extends conexion{
         }
          return $tareas;
     }
-     public function showAllTasks(){
+    public function showAllTasks(){
         $tareas = $this->getAllTasks();
         echo "<table>
                 <tr>
                     <th>id</th>
                     <th>titulo</th>
-                    <th>descripcion</th>
                     <th>fecha_creacion</th>
                     <th>fecha_vencimiento</th>
                 </tr>";
         foreach ($tareas as $tarea) {
             echo "<tr>
                     <td>" . $tarea->id . "</td>
-                    <td>" . $tarea->titulo . "</td>
-                    <td>" . $tarea->descripcion . "</td>
+                    <td><a href='detalle.php?id=" . $tarea->id . "'>" . $tarea->titulo . "</a></td>
                     <td>" . $tarea->fecha_creacion . "</td>
                     <td>" . $tarea->fecha_vencimiento . "</td>
                   </tr>";
         }
         echo "</table>";
-     }
     }
+    function addtarea(){
+        $query = "INSERT * FROM tareas";
+        $resultado = $this->conn->query( $query );
+        if(!$resultado){
+            die("Error en la consulta: " . $this->conn->error);
+        }
+    }
+}
 
     
 
