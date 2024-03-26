@@ -19,12 +19,12 @@ class Importar extends conexion{
     }
     function getBrandId(){
         $conn=$this->getConn();
-        $query= "SELECT brandid FROM brands ";
-        
-    }
-
-    
-    
+        $query= "SELECT brandId FROM brands where brandName= '$brandName' ";
+        $result= mysqli_query( $conn ,$query );
+        if ($row = mysqli_fetch_assioc( $result)) {
+            return $row['brandId'];
     }
     
+    }
+}    
   
