@@ -1,5 +1,5 @@
 <?php
 require_once "autoloader.php";
 
-$costumer = new Importar();
-$costumer->customer();
+$customer = new Importar();
+$customer->brandCustomer();

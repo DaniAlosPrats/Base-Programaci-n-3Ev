@@ -17,17 +17,32 @@ class Importar extends conexion{
             fclose($csvFile);
         }
     }
-    function getBrandId(){
-        $conn=$this->getConn();
-        $query= "SELECT brandId FROM brands where brandName= '$brandName' ";
-        $result= mysqli_query( $conn ,$query );
-        if ($row = mysqli_fetch_assioc( $result)) {
+    function getBrandId($brandName){
+        $conn = $this->getConn();
+        $query = "SELECT brandId FROM brands WHERE brandName = '$brandName'";
+        $result = mysqli_query($conn, $query);
+        if ($row = mysqli_fetch_assoc($result)) {
             return $row['brandId'];
+        } else {
+            return null; 
+        }
     }
     
-    }
+    
     function brandCustomer(){
-        
+        $conn = $this->getConn();
+        $csvFile = fopen("customers.csv", "r");
+    
+        if ($csvFile !== false) {
+            while ($data = fgetcsv($csvFile, 0, "#")) {
+                $customerId = $data[0];
+                $fBrands = explode(',', $data[2]);
+                
+                
+                
+            }
+            fclose($csvFile);
+        }
     }
-}    
-  
+    
+}
