@@ -20,39 +20,46 @@ class Importar extends conexion{
     function getBrandId($brandName) {
         $sql = "SELECT brandId FROM brands WHERE brandName = '$brandName'";
         $result = mysqli_query($this->conn, $sql);
-        if ($row = mysqli_fetch_assoc($result)) {
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             return $row['brandId'];
-        }
+        } 
     }
-   
-    
-    
-    function brandCustomer($brandName){
+    public function deletelist(){
         $conn = $this->getConn();
-        $csvFile = fopen("customers.csv", "r");
-        $brandName = $this->getBrandId($brandName);
-        $insertQuery = "INSERT INTO brandCustomer (brandId, customerId) VALUES ";
-
-        if ($csvFile !== false) {
-            while ($data = fgetcsv($csvFile, 0, "#")) {
+        $query = "DELETE FROM brandCustomer"; 
+        $conn->query($query);
+        
+    }
+    
+    
+    function brandCustomer($csvFile) {
+     
+        if (($gestor = fopen($csvFile, "r")) !== false) {
+          
+            while (($data = fgetcsv($gestor, 1000, "#")) !== false) {
                 $customerId = $data[0];
-                $fBrands = explode(',', $data[2]);
-
-                if (in_array($brandName, $fBrands)) {
-                   
-                    $sql = "SELECT brandId FROM brands WHERE brandName = '$brandName'";
-                    $result = mysqli_query($conn, $sql);
-    
-                    if ($result) {
-                        $row = mysqli_fetch_assoc($result);
-                        $brandId = $row['brandId'];
-    
-                        
-                        $insertQuery .= "('$brandId', '$customerId'),";
+                $marca = explode(',', $data[2]);
+                $num_marca = count($marca);
+                
+                $i = 0;
+                while ($i < $num_marca) {
+                    $marca = $marca[$i];
+                    $brandId = $this->getBrandId($marca);
+                    if ($brandId !== null && $brandId !== '') {
+                        $sql = "INSERT INTO brandCustomer (customerId, brandId) VALUES ('$customerId', '$brandId')";
+                        mysqli_query($this->conn, $sql);
                     }
-            fclose($csvFile);
+                    $i++; 
+                }
+            }
+            
+            fclose($gestor);
+        } else {
+            
+            echo "No se pudo abrir el archivo CSV.";
         }
     }
-    }
+    
 }
-}
+
