@@ -58,29 +58,7 @@ class Importar extends conexion{
         } 
     }
     
-    function drawbrandCustomer(){
-        
-        $query = "SELECT * FROM brandCustomer";
-        $result = mysqli_query($this->conn, $query);
     
-       
-        if (mysqli_num_rows($result) > 0) {
-            
-            echo "<table border='1'>";
-            echo "<tr><th>Customer ID</th><th>Brand ID</th></tr>";
-            
-            
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>".$row['customerId']."</td>";
-                echo "<td>".$row['brandId']."</td>";
-                echo "</tr>";
-            }
-            
-           
-            echo "</table>";
-        } 
-        }
     }
 
 
