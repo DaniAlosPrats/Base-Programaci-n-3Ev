@@ -3,7 +3,7 @@ class gestion extends conexion{
 
     function getBrand(){
         $conn=$this->getConn();
-        $brandName = " SELECT DISTINCT brandName FROM brands ORDER BY brandNAme ASC";
+        $brandName = " SELECT DISTINCT brandName FROM brands ORDER BY brandName ASC";
         $result = mysqli_query($conn,$brandName);
 
         if ($result->num_rows  > 0) {
