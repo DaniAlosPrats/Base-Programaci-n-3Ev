@@ -9,7 +9,7 @@ $customer = new gestion();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Marcas</title>
+    <title>Marcas de coche</title>
 </head>
 <body>
 
