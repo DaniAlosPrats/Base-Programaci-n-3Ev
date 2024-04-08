@@ -2,6 +2,6 @@
 require_once "autoloader.php";
 
 $customer = new Importar();
-$customer->brandCustomer();
+$customer->brandCustomer("customers.csv");
 ?>
 
