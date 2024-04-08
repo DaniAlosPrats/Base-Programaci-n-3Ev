@@ -32,7 +32,6 @@ class Importar extends conexion{
         
     }
     
-    
     function brandCustomer($csvFile) {
      
         if (($gestor = fopen($csvFile, "r")) !== false) {
