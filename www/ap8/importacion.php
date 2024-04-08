@@ -2,6 +2,6 @@
 require_once "autoloader.php";
 
 $customer = new Importar();
-$customers->brandCustomer();
+$customer->brandCustomer();
 ?>
 
