@@ -17,17 +17,55 @@ class Importar extends conexion{
             fclose($csvFile);
         }
     }
-    function getBrandId(){
-        $conn=$this->getConn();
-        $query= "SELECT brandId FROM brands where brandName= '$brandName' ";
-        $result= mysqli_query( $conn ,$query );
-        if ($row = mysqli_fetch_assioc( $result)) {
+    function getBrandId($brandName) {
+        $sql = "SELECT brandId FROM brands WHERE brandName = '$brandName'";
+        $result = mysqli_query($this->conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             return $row['brandId'];
+        } 
     }
+<<<<<<< HEAD
     
     }
     function brandCustomer(){
         8
+=======
+    public function deletelist(){
+        $conn = $this->getConn();
+        $query = "DELETE FROM brandCustomer"; 
+        $conn->query($query);
+        
+>>>>>>> 8ec31c8b2ce4e709822352caf2b37efaa0d9da8f
     }
-}    
-  
+    
+    
+    function brandCustomer($csvFile) {
+     
+        if (($gestor = fopen($csvFile, "r")) !== false) {
+          
+            while (($data = fgetcsv($gestor, 1000, "#")) !== false) {
+                $customerId = $data[0];
+                $marca = explode(',', $data[2]);
+                $num_marca = count($marca);
+                
+                $i = 0;
+                while ($i < $num_marca) {
+                    $marca = $marca[$i];
+                    $brandId = $this->getBrandId($marca);
+                    if ($brandId !== null && $brandId !== '') {
+                        $sql = "INSERT INTO brandCustomer (customerId, brandId) VALUES ('$customerId', '$brandId')";
+                        mysqli_query($this->conn, $sql);
+                    }
+                    $i++; 
+                }
+            }
+            
+            fclose($gestor);
+        } 
+    }
+    
+    
+    }
+
+
