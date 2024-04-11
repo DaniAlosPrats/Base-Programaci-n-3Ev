@@ -25,11 +25,18 @@ class Importar extends conexion{
             return $row['brandId'];
         } 
     }
+<<<<<<< HEAD
+    
+    }
+    function brandCustomer(){
+        8
+=======
     public function deletelist(){
         $conn = $this->getConn();
         $query = "DELETE FROM brandCustomer"; 
         $conn->query($query);
         
+>>>>>>> 8ec31c8b2ce4e709822352caf2b37efaa0d9da8f
     }
     
     function brandCustomer($csvFile) {

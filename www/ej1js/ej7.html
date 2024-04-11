@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Distancia entre dos puntos</title>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+         let x1 = parseFloat(prompt("Ingresa el valor de x1:"));
+    
+
+    let y1 = parseFloat(prompt("Ingresa el valor de y1:"));
+
+   
+    let x2 = parseFloat(prompt("Ingresa el valor de x2:"));
+
+  
+    let y2 = parseFloat(prompt("Ingresa el valor de y2:"));
+
+        let distancia = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+        document.getElementById('resultado').innerHTML = "La distancia entre los dos puntos es: " + distancia;
+    </script>
+
+</body>
+</html>
