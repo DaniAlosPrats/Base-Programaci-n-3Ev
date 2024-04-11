@@ -8,6 +8,7 @@ class conexion
     private $db;    
     protected $conn;
     protected $configFile = "conf.csv";
+    
 
     public function __construct()
     {
