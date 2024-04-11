@@ -27,7 +27,7 @@ class Importar extends conexion{
     
     }
     function brandCustomer(){
-        
+        8
     }
 }    
   
