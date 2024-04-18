@@ -6,6 +6,7 @@ function main(){
     img();
     cambiocolor();
     tamañoDiv();
+ 
 }
 
 function count(){
@@ -71,11 +72,12 @@ function cambiocolor() {
         }
     });
 }
-function ocultar(){
-    let div = document.get
+
+
+function ocultar() {
     let oculta = document.getElementsByClassName("oculta");
+    content.addEventListener("click", function(){});
+   
+       
+    }
 
-    content.addEventListener("click", function(){
-
-    })
-}

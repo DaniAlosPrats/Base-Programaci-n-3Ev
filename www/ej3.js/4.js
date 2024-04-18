@@ -1,6 +1,6 @@
 let tamano = parseInt(prompt("Ingrese el tamaño del array de números primos:"));
 
-while (isNaN(tamano) || tamano <= 0) {
+while (tamano=0 || tamano < 0) {
     tamano = parseInt(prompt("Por favor, ingrese un número positivo mayor que 0:"));
 }
 
