@@ -84,12 +84,22 @@ function cambiocolor() {
 
 
 function ocultar(ele) {
-    let hermano = ele.nextSibling;;
-    while (hermano.nodeName != "DIV") {
-        hermano = hermano.nextSibling;
-    };
-    hermano.style.display = (ele.innerHTML == "Mostrar") ? "block" : "none";
-    ele.innerHTML = (ele.innerHTML == "Mostrar") ? "Ocultar" : "Mostrar";
+    let hermano = ele.nextSibling;
+while (hermano.nodeName !== "DIV") {
+    hermano = hermano.nextSibling;
+}
+if (ele.innerHTML === "Mostrar") {
+    hermano.style.display = "block";
+    ele.innerHTML = "Ocultar";
+} else {
+    hermano.style.display = "none";
+    ele.innerHTML = "Mostrar";
+}
+}
+
+function hora(){
+    let hora = "00:00:00";
+    
 }
        
     
