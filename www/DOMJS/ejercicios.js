@@ -6,7 +6,16 @@ function main(){
     img();
     cambiocolor();
     tamañoDiv();
+    //Ejercicio 7
+//Esto en el main
+let botones = document.getElementsByClassName("oculta");
+for (let index = 0; index < botones.length; index++) {
+    botones[index].addEventListener("click", function (e) {
+        ocultar(e.currentTarget);
+        e.stopPropagation();
+    });
  
+}
 }
 
 function count(){
@@ -74,10 +83,14 @@ function cambiocolor() {
 }
 
 
-function ocultar() {
-    let oculta = document.getElementsByClassName("oculta");
-    content.addEventListener("click", function(){});
-   
+function ocultar(ele) {
+    let hermano = ele.nextSibling;;
+    while (hermano.nodeName != "DIV") {
+        hermano = hermano.nextSibling;
+    };
+    hermano.style.display = (ele.innerHTML == "Mostrar") ? "block" : "none";
+    ele.innerHTML = (ele.innerHTML == "Mostrar") ? "Ocultar" : "Mostrar";
+}
        
-    }
+    
 
