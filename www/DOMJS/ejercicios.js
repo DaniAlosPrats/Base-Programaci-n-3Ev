@@ -5,7 +5,7 @@ function main(){
     enlace(); 
     img();
     cambiocolor();
-    tamaño();
+    tamañoDiv();
 }
 
 function count(){
@@ -54,15 +54,28 @@ function cambiocolor() {
     });
   }
 
-  function tamaño() {
-    document.getElementById('content').addEventListener("click", function() {
-        let content = document.getElementById('content');
-        if (content.style.fontSize ==="2em") {
+  function tamañoDiv() {
+    let fontSize = 16; 
+    let contador = Math.pow(fontSize, 2);
+    let content = document.getElementById('content');
+
+    content.addEventListener("click", function () {
+        if (content.style.fontSize === "2em") {
+            while (fontSize < contador) {
+                fontSize += 1;
+                content.style.fontSize = fontSize + "px";
+            }
             content.style.fontSize = "1em";
         } else {
-            content.style.fontSize =  "2em "; 
+            content.style.fontSize = "2em";
         }
     });
 }
+function ocultar(){
+    let div = document.get
+    let oculta = document.getElementsByClassName("oculta");
 
+    content.addEventListener("click", function(){
 
+    })
+}
