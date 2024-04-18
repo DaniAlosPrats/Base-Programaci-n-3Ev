@@ -16,6 +16,7 @@ for (let index = 0; index < botones.length; index++) {
     });
  
 }
+hora();
 }
 
 function count(){
