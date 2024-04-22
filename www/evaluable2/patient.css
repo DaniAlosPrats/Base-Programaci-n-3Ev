@@ -1,0 +1,73 @@
+table.blackWhiteTable {
+    border: 2px solid #000000;
+    background-color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.blackWhiteTable td,
+table.blackWhiteTable th {
+    border: 1px solid #AAAAAA;
+    padding: 8px; /* Ajuste el valor según sea necesario */
+}
+
+table.blackWhiteTable tbody td {
+    font-size: 13px;
+}
+
+table.blackWhiteTable tr:nth-child(even) {
+    background: #E0E0E0;
+}
+
+table.blackWhiteTable thead {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+table.blackWhiteTable thead th {
+    font-size: 19px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #000000;
+}
+
+table.blackWhiteTable thead th:first-child {
+    border-left: none;
+}
+
+table.blackWhiteTable tfoot {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #000000;
+}
+
+table.blackWhiteTable tfoot td {
+    font-size: 13px;
+}
+
+table.blackWhiteTable tfoot .links {
+    text-align: right;
+}
+
+table.blackWhiteTable tfoot .links a {
+    display: inline-block;
+    background: #FFFFFF;
+    color: #000000;
+    padding: 8px; /* Ajuste el valor según sea necesario */
+    border-radius: 5px;
+}
+
+.vip {
+    font-weight: bolder;
+    color: blue;
+}
+.payment-status {
+    width: 25px; 
+    height: 25px; 
+    border-radius: 50%; 
+}
+
+
