@@ -22,6 +22,7 @@ $costumer = new Visitor("data.csv");
 </head>
 
 <body>
+    <h1 id="Titulo">Pacientes</h1>
     <table  class="blackWhiteTable">
         <thead>
             <tr>

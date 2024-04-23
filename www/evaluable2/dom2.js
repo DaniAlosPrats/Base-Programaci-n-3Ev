@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", main);
 function main() {
 
     cambiocolor();
+    tamañoDiv();
 }
 
 
@@ -19,3 +20,21 @@ function cambiocolor() {
         });
     }
 }
+function tamañoDiv() {
+    let fontSize = 16; 
+    let contador = Math.pow(fontSize, 2);
+    let content = document.getElementById('Titulo'); 
+
+    content.addEventListener("click", function () {
+        if (content.style.fontSize === "2em") {
+            while (fontSize < contador) {
+                fontSize += 1;
+                content.style.fontSize = fontSize + "px";
+            }
+            content.style.fontSize = "3em";
+        } else {
+            content.style.fontSize = "2em";
+        }
+    });
+}
+
