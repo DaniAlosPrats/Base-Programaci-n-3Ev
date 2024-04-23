@@ -42,7 +42,7 @@ $costumer = new Visitor("data.csv");
             <?= $costumer->listdraw() ?>
         </tbody>
     </table>
-
+    <script src="dom2.js"></script>
 
 </body>
 
