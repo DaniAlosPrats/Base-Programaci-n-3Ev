@@ -1,30 +1,25 @@
+let tamano = parseInt(prompt("Ingrese el tamaño del array de números primos:"));
 
-let tamañoArray = parseInt(prompt("Introduce el tamaño del array de números primos:"));
-
-while (isNaN(tamañoArray) || tamañoArray <= 0) {
-    tamañoArray = parseInt(prompt("Por favor, introduce un número válido mayor que 0 para el tamaño del array:"));
+while (tamano=0 || tamano < 0) {
+    tamano = parseInt(prompt("Por favor, ingrese un número positivo mayor que 0:"));
 }
 
+let primos = [];
+let numero = 2;
 
-let arrayPrimos = [];
-let numero = 1;
-while (arrayPrimos.length < tamañoArray) {
+while (primos.length < tamano) {
     let esPrimo = true;
-    if (numero <= 1) {
-        esPrimo = false;
-    } else {
-        for (let i = 2; i <= Math.sqrt(numero); i++) {
-            if (numero % i === 0) {
-                esPrimo = false;
-                break;
-            }
+    for (let i = 2; i <= Math.sqrt(numero); i++) {
+        if (numero % i === 0) {
+            esPrimo = false;
+            break;
         }
     }
     if (esPrimo) {
-        arrayPrimos.push(numero);
+        primos.push(numero);
     }
-    numero++;
+    numero;
 }
 
-console.log("Array de números primos:");
-console.log(arrayPrimos);
+
+document.getElementById("salidas").innerHTML += numero;

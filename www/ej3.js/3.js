@@ -1,27 +1,26 @@
 let array1 = [];
-let numero = parseInt(prompt("Introduce un número entero para el primer array (0 para terminar):"));
-while (numero !== 0) {
-    array1.push(numero);
-    numero = parseInt(prompt("Introduce otro número entero para el primer array (0 para terminar):"));
-}
-
-
 let array2 = [];
-numero = parseInt(prompt("Introduce un número entero para el segundo array (0 para terminar):"));
-while (numero !== 0) {
-    array2.push(numero);
-    numero = parseInt(prompt("Introduce otro número entero para el segundo array (0 para terminar):"));
+let producto = 1;
+
+document.getElementById("salidas").innerHTML = "Ingrese elementos para el primer array (0 para terminar):<br>";
+let elemento = parseInt(prompt("Ingrese un número para el primer array (0 para terminar):"));
+while (elemento !== 0) {
+    array1.push(elemento);
+    elemento = parseInt(prompt("Ingrese un número para el primer array (0 para terminar):"));
 }
 
+elemento = parseInt(prompt("Ingrese un número para el segundo array (0 para terminar):"));
+while (elemento !== 0) {
+    array2.push(elemento);
+    elemento = parseInt(prompt("Ingrese un número para el segundo array (0 para terminar):"));
+}
 
 if (array1.length !== array2.length) {
-    console.log("Los arrays proporcionados no tienen la misma longitud. No se puede realizar el proceso.");
+    document.getElementById("salidas").innerHTML += "<br>Los arrays proporcionados no tienen la misma longitud.";
 } else {
-   
-    let producto = 1;
     for (let i = 0; i < array1.length; i++) {
         producto *= array1[i] * array2[i];
     }
 
-    console.log("El producto de los elementos que ocupan la misma posición es: " + producto);
+    document.getElementById("salidas").innerHTML += "<br>El producto de los elementos en la misma posición es:" + producto;
 }

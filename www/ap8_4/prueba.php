@@ -1,9 +1,3 @@
-<?php 
-require_once "autoloader.php";
-$modelo = new Modelo();
-$modelo->init();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +18,13 @@ $modelo->init();
     </thead>
     <tfoot>
         <tr>
-            <td colspan="4">
-                
-            </td>
+            <td colspan="4"></td>
         </tr>
     </tfoot>
     <tbody>
         <?php 
+        require_once "autoloader.php";
+        $modelo = new Modelo();
         $tasks = $modelo->getAllTasks();
         foreach ($tasks as $task) {
             echo "<tr>
@@ -38,16 +32,14 @@ $modelo->init();
                     <td>$task->titulo</td>
                     <td>$task->fecha_vencimiento</td>
                     <td>$task->fecha_creacion</td>
-                    <td><a href='borrar.php'>borrar tarea</a></td>
-                    <td><a href='modifica.php'>Modificar tarea</a></td>
+                    <td><a href='borrar.php?Id=$task->id'>borrar tarea</a></td>
+                    <td><a href='modificar.php?Id=$task->id'>Modificar tarea</a></td>
                   </tr>";
         }
         
         ?>
         <tr>
             <td colspan="6"><a href='nueva.php'>Añadir tarea</a></td>
-            
-           
         </tr>
     </tbody>
 </table>
