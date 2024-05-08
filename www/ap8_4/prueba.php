@@ -21,6 +21,7 @@
         <?php 
         require_once "autoloader.php";
         $modelo = new Modelo();
+        
         $conn = new mysqli('db', 'root', 'test', "todolist");
             
         if ($conn->connect_error) {
