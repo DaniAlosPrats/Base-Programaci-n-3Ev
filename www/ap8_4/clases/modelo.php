@@ -79,17 +79,20 @@ class modelo extends conexion{
     }
     // modelo.php
 
-public function updateTarea($id, $titulo, $descripcion, $fecha_vencimiento) {
-    ob_start();
-    $query = "UPDATE tareas SET titulo='$titulo', descripcion='$descripcion', fecha_vencimiento='$fecha_vencimiento' WHERE id=$id";
-    $resultado = $this->conn->query($query);
-    if (!$resultado) {
-        die("Error en la consulta: " . $this->conn->error);
-    } else {
-        header("Location: modifica.php");
-        exit();
+    public function updateTarea($id, $titulo, $descripcion, $fecha_vencimiento) {
+        
+        ob_start();
+    
+        $query = "UPDATE tareas SET titulo='$titulo', descripcion='$descripcion', fecha_vencimiento='$fecha_vencimiento' WHERE id=$id";
+        $resultado = $this->conn->query($query);
+    
+        if (!$resultado) {
+            // Clear the output buffer and display error message
+            ob_end_clean();
+            die("Error en la consulta: " . $this->conn->error);
+        } 
     }
-}
+    
 
     public function encotrarID($id) {
         $query = "SELECT * FROM tareas WHERE id = $id";
