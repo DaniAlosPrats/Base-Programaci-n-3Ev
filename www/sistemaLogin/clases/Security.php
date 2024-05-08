@@ -3,6 +3,8 @@ class Security extends Conexion
 {
     private $loginPage = "login.php";
     private $homePage = "index.php";
+    private $registerPage = "inicio.php";
+
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +15,8 @@ class Security extends Conexion
     {
         if (!isset($_SESSION["loggedIn"]) || !$_SESSION["loggedIn"]) {
             header("Location: " . $this->loginPage);
+        }else{
+            header("Location: " . $this->registerPage);
         }
     }
 
@@ -63,8 +67,14 @@ class Security extends Conexion
             return false;
         }
     }
-    private function crearUsuario(){
-    
+    public function singUp(){
+        if (count($_POST) > 0) {
+            $name = $_POST["userName"]; 
+            $password = $_POST["userPassword"];
+            $securePassword= password_hash($password, PASSWORD_DEFAULT);
+            $id = random_int(12,1000);
+            $sql = "INSERT INTO users(userId, userName, userPassword, securePassword) VALUES ('$id','$name','$password','$securePassword')";
+            $result = $this->conn->query($sql);
+        }
     }
-
 }
