@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $modelo->updateTarea($id, $titulo, $descripcion, $fecha_vencimiento);
 
-    header("Location: modifica.php?id=$id");
+    header("Location: prueba.php");
     exit(); 
 }
 ?>

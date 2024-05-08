@@ -45,9 +45,9 @@
             foreach ($value as $element) {
                 echo '<td>' . $element . '</td>';
             }
-            echo '<td><a href="insertar.php?id="><img src="mas.png" width="25" height="25"></a></td>';
-            echo '<td><a href="delete.php?Id=' . $value['id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
-            echo '<td><a href="edit.php?id=' . $value['id'] .'"><img src="edit_icon.png" width="25" height="25"></a></td>';
+            echo '<td><a href="nueva.php?id="><img src="mas.png" width="25" height="25"></a></td>';
+            echo '<td><a href="borrar.php?Id=' . $value['id'] . '"><img src="del_icon.png" width="25" height="25"></a></td>';
+            echo '<td><a href="modifica.php?id=' . $value['id'] .'"><img src="edit_icon.png" width="25" height="25"></a></td>';
             echo '</tr>';
         }
         
